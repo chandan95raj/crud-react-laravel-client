@@ -46,7 +46,7 @@ function EditProduct() {
                 const { name, description, image } = response.data.product;
                 setName(name);
                 setDescription(description);
-                setPreview(`${baseURL}/storage/${image}`);
+                setPreview(`${baseURL}/storage/app/public/${image}`);
             }
         } catch (error) {
             toast.error("Failed to fetch product details.");

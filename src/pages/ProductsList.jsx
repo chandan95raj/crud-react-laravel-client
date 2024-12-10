@@ -105,7 +105,7 @@ function ProductList() {
                                 <TableCell>{pdata.description}</TableCell>
                                 <TableCell align="center">
                                     <img
-                                        src={`${baseURL}/storage/${pdata.image}`}
+                                        src={`${baseURL}/storage/app/public/${pdata.image}`}
                                         alt="Product"
                                         style={{
                                             height: 60,

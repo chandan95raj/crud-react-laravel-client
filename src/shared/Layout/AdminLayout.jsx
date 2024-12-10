@@ -16,10 +16,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Link } from 'react-router-dom';
 import menus from '../../json-api/admin-menu.json';
 import { Avatar, Divider, Tooltip } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 // import { AccountCircle } from '@mui/icons-material';
 
 // eslint-disable-next-line react/prop-types
 const AdminLayout = ({ children }) => {
+    const location = useLocation();
     const [active, setActive] = useState(true);
     const [width, setWidth] = useState(250);
     const isMobile = useMediaQuery('(max-width: 600px)'); // Detect mobile screens
@@ -59,7 +61,9 @@ const AdminLayout = ({ children }) => {
                         <List>
                             {menus.map((item, index) => (
                                 <Link to={item.path} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    <ListItem disablePadding>
+                                    <ListItem disablePadding sx={{
+                                        backgroundColor: location.pathname === item.path ? 'rgba(0, 0, 0, 0.07)' : 'transparent',
+                                    }}>
                                         <ListItemButton>
                                             <ListItemIcon>
                                                 <span className="material-icons">{item.icon}</span>
@@ -146,7 +150,9 @@ const AdminLayout = ({ children }) => {
                             >
                                 {menus.map((item, index) => (
                                     <Link to={item.path} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                        <MenuItem onClick={handleClose}>
+                                        <MenuItem onClick={handleClose} sx={{
+                                            backgroundColor: location.pathname === item.path ? 'rgba(0, 0, 0, 0.07)' : 'transparent',
+                                        }}>
                                             <ListItemIcon>
                                                 <span className="material-icons">{item.icon}</span>
                                             </ListItemIcon>

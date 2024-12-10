@@ -1,0 +1,45 @@
+[
+    {
+        "id":1,
+        "label":"Dashboard",
+        "path":"/dashboard",
+        "icon":"dashboard"
+    },
+    {
+        "id":2,
+        "label":"Product List",
+        "path":"/productlist",
+        "icon":"list"
+    },    
+    {
+        "id":2,
+        "label":"Add Product",
+        "path":"/addproduct",
+        "icon":"add"
+    },    
+    {
+        "id":2,
+        "label":"Users",
+        "path":"/users",
+        "icon":"person"
+    },    
+    {
+        "id":3,
+        "label":"Department",
+        "path":"/department",
+        "icon":"badge"
+    },    
+    {
+        "id":4,
+        "label":"Plant",
+        "path":"/plant",
+        "icon":"article"
+    },    
+    {
+        "id":5,
+        "label":"Logout",
+        "path":"/",
+        "icon":"logout"
+    }    
+
+]

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -13,14 +14,18 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import menus from '../../json-api/admin-menu.json';
 import { Avatar, Divider, Tooltip } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { baseURL } from '../../config';
+import axios from 'axios';
 // import { AccountCircle } from '@mui/icons-material';
 
 // eslint-disable-next-line react/prop-types
 const AdminLayout = ({ children }) => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [active, setActive] = useState(true);
     const [width, setWidth] = useState(250);
@@ -39,6 +44,37 @@ const AdminLayout = ({ children }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = async () => {
+        const token = localStorage.getItem('auth_token');
+
+        if (token) {
+            try {
+                // Call the logout API
+                await axios
+                    .post(`${baseURL}/api/logout`, {}, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,  // Pass the token in the header
+                        },
+                    });
+
+                // Remove token from localStorage
+                localStorage.removeItem('auth_token');
+
+                // Show success notification
+                toast.success("Logged out successfully!");
+
+                // Navigate to the login page
+                navigate('/');
+            } catch (error) {
+                // Handle errors if the logout API fails
+                toast.error("Logout failed. Please try again.");
+            }
+        } else {
+            // If there's no token, just navigate to login
+            navigate('/');
+        }
+    };
+
 
     return (
         <>
@@ -73,6 +109,16 @@ const AdminLayout = ({ children }) => {
                                     </ListItem>
                                 </Link>
                             ))}
+                            <Link onClick={handleLogout} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <span className="material-icons">logout</span>
+                                        </ListItemIcon>
+                                        <ListItemText primary="Logout" />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
                         </List>
                     </Drawer>
                 )}
@@ -161,6 +207,14 @@ const AdminLayout = ({ children }) => {
                                     </Link>
                                 ))}
                                 <Divider />
+                                <Link onClick={handleLogout} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <MenuItem onClick={handleClose}>
+                                        <ListItemIcon>
+                                            <span className="material-icons">logout</span>
+                                        </ListItemIcon>
+                                        <ListItemText primary="Logout" />
+                                    </MenuItem>
+                                </Link>
                             </Menus>
                         </Toolbar>
                     </Stack>

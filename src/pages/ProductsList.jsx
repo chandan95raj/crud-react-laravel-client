@@ -80,6 +80,7 @@ function ProductList() {
 
 
     return (
+        
         <Container maxWidth="lg" sx={{ mt: 4 }}>
             <Typography variant="h5" gutterBottom>
                 Product List
@@ -100,12 +101,12 @@ function ProductList() {
                     <TableBody>
                         {product.map((pdata, index) => (
                             <TableRow key={pdata.id}>
-                                <TableCell align="center">{index + 1}</TableCell>
+                                <TableCell align="center">{index + 1}.</TableCell>
                                 <TableCell className="text-capitalize">{pdata.name}</TableCell>
                                 <TableCell>{pdata.description}</TableCell>
                                 <TableCell align="center">
                                     <img
-                                        src={`${baseURL}/storage/app/public/${pdata.image}`}
+                                        src={`${baseURL}/storage/${pdata.image}`}
                                         alt="Product"
                                         style={{
                                             height: 60,

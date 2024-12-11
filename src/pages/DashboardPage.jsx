@@ -1,14 +1,30 @@
-import { Button, Card, CardActions, CardContent, Typography } from '@mui/material';
+/* eslint-disable react/prop-types */
+import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { BarChart } from '@mui/x-charts/BarChart';
-const DashboardPage = () => {
+const DashboardPage = ({ user }) => {
+  if (!user) return null;
   return (
     <>
-      <Grid container spacing={2} sx={{mb:4}}>
+      <Box sx={{ py: 3 }}>
+        <Typography variant="h4" >
+          Welcome ! <span className='text-primary text-capitalize'>{user.name}</span>
+        </Typography>
+
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12, sm: 6 }}>
+            <Typography variant="body1"><strong>Email:</strong> {user.email}</Typography>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6 }}>
+            <Typography variant="body1"><strong>Mobile:</strong> {user.mobile}</Typography>
+          </Grid>
+        </Grid>
+      </Box>
+      <Grid container spacing={2} sx={{ mb: 4 }}>
         <Grid size={{ xs: 12, md: 4 }}>
-          <Card sx={{backgroundColor:'#f2f2f2'}}>
+          <Card sx={{ backgroundColor: '#f2f2f2' }}>
             <CardContent>
-              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+              <Typography  sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Word of the Day
               </Typography>
 
@@ -25,9 +41,9 @@ const DashboardPage = () => {
           </Card>
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          <Card sx={{backgroundColor:'#f2f2f2'}}>
+          <Card sx={{ backgroundColor: '#f2f2f2' }}>
             <CardContent>
-              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+              <Typography sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Word of the Day
               </Typography>
 
@@ -44,9 +60,9 @@ const DashboardPage = () => {
           </Card>
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          <Card sx={{backgroundColor:'#f2f2f2'}}>
+          <Card sx={{ backgroundColor: '#f2f2f2' }}>
             <CardContent>
-              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+              <Typography sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Word of the Day
               </Typography>
 
@@ -61,7 +77,7 @@ const DashboardPage = () => {
               <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
-        </Grid>       
+        </Grid>
       </Grid>
 
       <Grid container spacing={2}>

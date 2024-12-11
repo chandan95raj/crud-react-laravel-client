@@ -46,7 +46,7 @@ function EditProduct() {
                 const { name, description, image } = response.data.product;
                 setName(name);
                 setDescription(description);
-                setPreview(`${baseURL}/storage/app/public/${image}`);
+                setPreview(`${baseURL}/storage/${image}`);
             }
         } catch (error) {
             toast.error("Failed to fetch product details.");
@@ -77,9 +77,7 @@ function EditProduct() {
 
             if (response) {
                 toast.success(response.data.message);
-                setTimeout(() => {
-                    navigate("/productlist");
-                }, 2000);
+                navigate("/productlist");
             }
         } catch (error) {
             toast.error("Failed to update the product. Please try again.");
